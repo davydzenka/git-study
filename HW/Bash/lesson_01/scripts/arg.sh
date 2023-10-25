@@ -1,14 +1,31 @@
 #!/bin/bash
 
 echo "The file to search must be in the current directory"
+echo
 
-#Assigning the argument the name of the file to search
+# Validating input from more than one file
 
-file=$1
+if [ "$#" -gt 1 ]; then
+	echo "Error. More than one file entered!"
+	exit 1
+elif [ "$#" -lt 1 ]; then
+	echo "There is no file to search!"
+	exit 1
+fi
 
-#Finding the file size and matching a condition based on its size
+if [ -f $1 ]; then
+  file=$1
+  else
+	  echo "$1 file not found or invalid file name"
+	  exit 1
+fi
 
-filesize=$(stat -c%s "$file");
+# Finding the file size and matching a condition based on its size
+
+####### filesize=$(stat -c%s "$file");
+
+filesize=$(wc -c < "$file");
+
 if [ "$filesize" -le "1024" ]; then
 	echo "OK"
 else
