@@ -1,0 +1,13 @@
+server {
+	listen 83;
+	
+	root /var/www/83;
+	index index.html index.htm;
+	server_name _localhost_83;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	access_log /var/log/nginx/83-access.log;
+}
