@@ -1,0 +1,19 @@
+server {
+	listen 84;
+	
+	root /var/www/84;
+	index index.html index.htm;
+	server_name _localhost_84;
+
+	location / {
+		return 200 "Hi from port 84!";
+
+		try_files $uri $uri/ =404;
+	}
+
+	location /files {
+                try_files $uri $uri/ =404;
+        }
+
+	access_log off;
+}

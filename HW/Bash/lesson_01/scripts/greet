@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Checking Argument Input Conditions
+if [ $# == 1 ]; then
+	echo "Hello, $1!"
+else
+	if [ $# -gt 1 ]; then
+		echo "Error! More than one name has been entered."
+	fi
+	if [ $# == 0 ]; then
+		echo "Error! No name has been entered."
+	fi
+fi
+

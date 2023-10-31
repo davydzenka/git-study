@@ -1,0 +1,21 @@
+Configuring access_log
+The access_log file collects all client requests immediately after the request is processed, providing a great way to log which pages users are requesting from your web server. You can choose where the acess_log data is written to using the following configuration file syntax:
+
+access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]];
+access_log off;
+Specifying format allows you to use a custom format in your logs by using variables such as number of bytes sent to the client ($bytes_sent) or the request length ($request_length).
+
+Normally, NGINX will log every transaction it processes in access_log. The if=condition parameter provides a powerful way to perform conditional logging so it only stores log access log messages if some condition is true. For example, if you only want to record requests returning a HTTP 404 status code you can use the following snippet:
+
+map $status $should_log {
+	404 1;
+	default 0;
+}
+
+access_log logs/access.log combined if=$should_log;
+With this change any requests completed successfully (2xx), redirected to another page (3xx) or encountered a server error (5xx) will not be logged in logs/access.log—only 404 errors will be logged.
+
+If you have more than one virtual host or multiple http, server, or location directives thensometimes it’s handy to be able to disable logging for at the current directive level, and the special off value was created for this purpose. The following configuration line shows how you can prevent NGINX from writing access information to any access_log target at the current level:
+
+access_log off;
+For a fuller explanation of the configuration options, check out the NGINX access_log documentation.
