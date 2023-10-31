@@ -1,0 +1,8 @@
+root - /bin/bash
+test - /bin/bash
+admin - /bin/bash
+studiouser - /bin/bash
+apt_get_admin - /bin/bash
+user_a - /bin/bash
+user_b - /bin/bash
+devops - /bin/bash

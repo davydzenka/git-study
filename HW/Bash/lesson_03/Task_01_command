@@ -1,0 +1,29 @@
+# Command for Task 01
+
+#  Username and Shell for each entry in /etc/passwd
+
+awk -F: '{print $1, "---", $7}' /etc/passwd > user_shell.txt
+
+#Count Users for Each Shell: Analyze /etc/passwd to determine the number of users assigned to each shell. Display the results in the format: [Shell]: [Number of Users]. Save tp sh_count.txt
+
+awk -F ':' '{ print $7}' /etc/passwd | sort | uniq -c | awk '{ print "[", $2 , "]", ":", "[", $1, "]"}' > sh_count.txt
+
+#List Users with a Specific Shell: Extract and display a list of users whose default shell is /bin/bash. Save to bash_users.txt
+
+awk -F: '/bash/ {print $1, "-", $7}' /etc/passwd > bash_users.txt
+
+#Find Users without a Valid Shell: Some users might have /usr/sbin/nologin or no shell specified. List these users and identify them as not having a standard login shell. Save to no_login_users.txt
+
+awk -F ':' '/nologin/ { print "[", $1, "]", "["$7 "]"}' /etc/passwd > no_login_users.txt
+
+#Extract Unique UID and GID Combinations: Extract and list unique combinations of UID and GID from /etc/passwd. Display them in the format: UID:GID. Save to unique_uid_gid.txt
+
+awk -F ':' 'BEGIN {print "UID:GID"} { print $3, ":", $4}' /etc/passwd | uniq -u > unique_uid_gid.txt
+
+#List Users with UID Greater than 1000: Regular system users usually have UIDs less than or equal to 1000. List all users with a UID greater than 1000, which usually indicates regular non-system users.
+
+awk -F: '{if ($3 >= 1000) print $1, "-UID-", $3}' /etc/passwd > user_UID_1000.txt
+
+#Sort Users Based on Home Directory: Display users sorted based on their home directory path. This can give insights into custom directory paths set for specific users. Save to sorted_by_home.txt
+
+sort --field-separator=: --key=6 /etc/passwd | awk -F ':' '{ printf "%20s\t %s\n", $1, $6}' > sorted_by_home.txt

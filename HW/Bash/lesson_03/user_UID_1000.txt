@@ -1,0 +1,9 @@
+nobody -UID- 65534
+test -UID- 1000
+peter -UID- 1001
+admin -UID- 1004
+studiouser -UID- 1005
+apt_get_admin -UID- 1006
+user_a -UID- 1007
+user_b -UID- 1008
+devops -UID- 1009

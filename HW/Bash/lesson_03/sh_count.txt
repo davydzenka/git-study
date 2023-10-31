@@ -1,0 +1,5 @@
+[ /bin/bash ] : [ 8 ]
+[ /bin/false ] : [ 6 ]
+[ /bin/sh ] : [ 1 ]
+[ /bin/sync ] : [ 1 ]
+[ /usr/sbin/nologin ] : [ 34 ]
