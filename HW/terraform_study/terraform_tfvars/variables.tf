@@ -2,20 +2,12 @@ variable "list_ip_addresses" {
   type    = list(string)  
 }
 
-variable "count_list_ip_addresses" {
-  type    = number
-}
-
 variable "surname_name" {
   type    = string
 }
 
 variable "unique_ids" {
   type    = list(string)
-}
-
-variable "count_unique_ids" {
-  type    = number
 }
 
 variable "filename_ip_addresses" {
